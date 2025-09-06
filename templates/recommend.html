@@ -1,139 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Book Recommender System</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <meta charset="UTF-8">
+  <title>Book Recommender System</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 
-    <style>
-        body {
-            background-color: #121212;
-            color: #fff;
-            font-family: "Segoe UI", Arial, sans-serif;
-        }
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: "Segoe UI", Arial, sans-serif;
+    }
 
-        .navbar {
-            border-radius: 0;
-            border: none;
-        }
+    /* Navbar */
+    .custom-navbar {
+      background: linear-gradient(90deg, #00a65a, #02894e);
+      border: none;
+      border-radius: 0;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
 
-        .navbar-brand, .nav > li > a {
-            color: white !important;
-            font-weight: bold;
-        }
+    .custom-navbar .navbar-brand {
+      color: #fff !important;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-        .navbar-brand:hover, .nav > li > a:hover {
-            color: #e6e6e6 !important;
-        }
+    .custom-navbar .navbar-nav > li > a {
+      color: #fff !important;
+      font-size: 16px;
+      font-weight: 500;
+      padding: 15px 20px;
+      transition: background 0.3s, color 0.3s;
+    }
 
-        h1 {
-            text-align: center;
-            margin: 40px 0;
-            font-size: 42px;
-            font-weight: 600;
-        }
+    .custom-navbar .navbar-nav > li > a:hover {
+      background: rgba(255,255,255,0.15);
+      color: #fff !important;
+      border-radius: 6px;
+    }
 
-        .book-card {
-            background-color: #1e1e1e;
-            border-radius: 12px;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-            transition: transform 0.2s, box-shadow 0.2s;
-            height: 100%;
-        }
+    .custom-navbar .glyphicon {
+      margin-right: 6px;
+    }
 
-        .book-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 18px rgba(0,0,0,0.7);
-        }
+    /* Heading */
+    h1 {
+      text-align: center;
+      margin: 40px 0;
+      font-size: 42px;
+      font-weight: 600;
+    }
 
-        .book-card img {
-            max-height: 200px;
-            margin-bottom: 15px;
-            border-radius: 8px;
-        }
+    /* Book Cards */
+    .book-card {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 15px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      height: 100%;
+    }
 
-        .book-card h2 {
-            font-size: 20px;
-            margin: 10px 0;
-            color: #00ffb3;
-        }
+    .book-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+    }
 
-        .book-card h4 {
-            font-size: 16px;
-            margin: 5px 0;
-            color: #cccccc;
-        }
+    .book-card img {
+      max-height: 200px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+    }
 
-        .rating {
-            color: #ffd700;
-            font-weight: bold;
-        }
-        .custom-navbar {
-    background: linear-gradient(90deg, #00a65a, #02894e);
-    border: none;
-    border-radius: 0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-  }
+    .book-card h2 {
+      font-size: 20px;
+      margin: 10px 0;
+      color: #00ffb3;
+    }
 
-  .custom-navbar .navbar-brand {
-    color: #fff !important;
-    font-size: 20px;
-    font-weight: bold;
-  }
+    .book-card h4 {
+      font-size: 16px;
+      margin: 5px 0;
+      color: #cccccc;
+    }
 
-  .custom-navbar .navbar-nav > li > a {
-    color: #fff !important;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 15px 20px;
-    transition: background 0.3s, color 0.3s;
-  }
+    .rating {
+      color: #ffd700;
+      font-weight: bold;
+    }
 
-  .custom-navbar .navbar-nav > li > a:hover {
-    background: rgba(255,255,255,0.15);
-    color: #fff !important;
-    border-radius: 6px;
-  }
+    /* Search Form */
+    .search-form {
+      max-width: 500px;
+      margin: 30px auto;
+    }
 
-  .custom-navbar .glyphicon {
-    margin-right: 6px;
-  }
-    </style>
+    .search-form .form-control {
+      border-radius: 8px;
+      border: 1px solid #00a65a;
+      padding: 12px;
+      font-size: 16px;
+      background-color: #fff;  /* ✅ Visible */
+      color: #000;
+    }
+
+    .search-form .form-control:focus {
+      background-color: #f9f9f9;
+      box-shadow: 0 0 8px #00a65a;
+      border: 1px solid #00a65a;
+      outline: none;
+    }
+  </style>
 </head>
 <body>
-    <nav class="navbar navbar-inverse custom-navbar">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">📚 My Book Recommender</a>
+  <nav class="navbar navbar-inverse custom-navbar">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">📚 My Book Recommender</a>
+      </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+        <li><a href="/recommend"><span class="glyphicon glyphicon-star"></span> Recommend</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+      </ul>
     </div>
-    <ul class="nav navbar-nav navbar-right">
-      <li><a href="/"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-      <li><a href="/recommend"><span class="glyphicon glyphicon-star"></span> Recommend</a></li>
-      <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
-    </ul>
-  </div>
-</nav>
+  </nav>
 
-    <div class="container">
-        <h1>Recommend Books</h1>
-        <div class="row">
-            <div class="col-md-12">
-                <form>
-                    <input type="text" class="form-control"><br>
-                    <input type="submit" class="btn btn-lg btn-warning">
-                </form>
-            </div>
+  <div class="container">
+    <h1>Recommend Books</h1>
 
-            <div class="col-md-3 col-sm-6" style="margin-bottom: 30px;">
-                <div class="book-card">
-                    <img src="http://images.amazon.com/images/P/0439136350.01.MZZZZZZZ.jpg">
-                    <h2>hhhh</h2>
-                    <h4>hhhhhh</h4>
-                </div>
-            </div>
+    <form class="search-form" action="/recommend_books" method="post">
+      <input name="user_input" type="text" class="form-control" placeholder="Search for a book...">
+      <br>
+      <input type="submit" class="btn btn-lg btn-warning btn-block" value="🔍 Recommend">
+    </form>
+    {% if data %}
+  <div class="row">
+    {% for i in data %}
+      <div class="col-md-3 col-sm-6" style="margin-bottom: 30px;">
+        <div class="book-card">
+          <img src="{{ i[2] }}">
+          <h2>{{ i[0] }}</h2>
+          <h4>{{ i[1] }}</h4>
         </div>
-    </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+
+  </div>
 </body>
 </html>
