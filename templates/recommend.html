@@ -117,19 +117,22 @@
 </nav>
 
     <div class="container">
-        <h1>Top 50 Books</h1>
+        <h1>Recommend Books</h1>
         <div class="row">
-            {% for i in range(book_name|length) %}
+            <div class="col-md-12">
+                <form>
+                    <input type="text" class="form-control"><br>
+                    <input type="submit" class="btn btn-lg btn-warning">
+                </form>
+            </div>
+
             <div class="col-md-3 col-sm-6" style="margin-bottom: 30px;">
                 <div class="book-card">
-                    <img src="{{ image[i] }}" alt="{{ book_name[i] }}">
-                    <h2>{{ book_name[i] }}</h2>
-                    <h4>{{ author_name[i] }}</h4>
-                    <h4>Votes: {{ votes[i] }}</h4>
-                    <h4 class="rating">⭐ {{ ratings[i] | round(2) }}</h4>
+                    <img src="http://images.amazon.com/images/P/0439136350.01.MZZZZZZZ.jpg">
+                    <h2>hhhh</h2>
+                    <h4>hhhhhh</h4>
                 </div>
             </div>
-            {% endfor %}
         </div>
     </div>
 </body>
