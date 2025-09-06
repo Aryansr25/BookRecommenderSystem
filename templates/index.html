@@ -3,25 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <title>Book Recommender System</title>
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <style>
+        body {
+            background-color: #121212;
+            color: #fff;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+        .navbar {
+            border-radius: 0;
+            border: none;
+        }
+
+        .navbar-brand, .nav > li > a {
+            color: white !important;
+            font-weight: bold;
+        }
+
+        .navbar-brand:hover, .nav > li > a:hover {
+            color: #e6e6e6 !important;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 42px;
+            font-weight: 600;
+        }
+
+        .book-card {
+            background-color: #1e1e1e;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
+            height: 100%;
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.7);
+        }
+
+        .book-card img {
+            max-height: 200px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+
+        .book-card h2 {
+            font-size: 20px;
+            margin: 10px 0;
+            color: #00ffb3;
+        }
+
+        .book-card h4 {
+            font-size: 16px;
+            margin: 5px 0;
+            color: #cccccc;
+        }
+
+        .rating {
+            color: #ffd700;
+            font-weight: bold;
+        }
+        .custom-navbar {
+    background: linear-gradient(90deg, #00a65a, #02894e);
+    border: none;
+    border-radius: 0;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  .custom-navbar .navbar-brand {
+    color: #fff !important;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .custom-navbar .navbar-nav > li > a {
+    color: #fff !important;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 15px 20px;
+    transition: background 0.3s, color 0.3s;
+  }
+
+  .custom-navbar .navbar-nav > li > a:hover {
+    background: rgba(255,255,255,0.15);
+    color: #fff !important;
+    border-radius: 6px;
+  }
+
+  .custom-navbar .glyphicon {
+    margin-right: 6px;
+  }
+    </style>
 </head>
-<body style="background-color: black">
-    <nav class="navbar" style="background-color:#00a65a">
-        <a class="navbar-brand" href="#">My book recommender</a>
-      <ul class="nav navbar-nav">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Recommend</a></li>
-        <li><a href="#">Contact</a></li>
-      </ul>
-    </nav>
+<body>
+    <nav class="navbar navbar-inverse custom-navbar">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">📚 My Book Recommender</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-star"></span> Recommend</a></li>
+      <li><a href="#"><span class="glyphicon glyphicon-envelope"></span> Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
     <div class="container">
+        <h1>Top 50 Books</h1>
         <div class="row">
-            <div class="col-12">
-                <h1 style="color: white;font-size: 50px">Top 50 Books</h1>
+            {% for i in range(book_name|length) %}
+            <div class="col-md-3 col-sm-6" style="margin-bottom: 30px;">
+                <div class="book-card">
+                    <img src="{{ image[i] }}" alt="{{ book_name[i] }}">
+                    <h2>{{ book_name[i] }}</h2>
+                    <h4>{{ author_name[i] }}</h4>
+                    <h4>Votes: {{ votes[i] }}</h4>
+                    <h4 class="rating">⭐ {{ ratings[i] | round(2) }}</h4>
+                </div>
             </div>
-            <div class="col-3">
-                <div
-            </div>
+            {% endfor %}
         </div>
     </div>
 </body>
